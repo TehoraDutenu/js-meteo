@@ -16,7 +16,9 @@
     <div class="container mt-5">
       <h1>Appli météo</h1>
 
-      <p>Entrez les coordonnées géographiques (latitude et longitude) :</p>
+      <h5 class="mt-5">
+        Entrez les coordonnées géographiques (latitude et longitude) :
+      </h5>
 
       <div class="form-group">
         <label for="latitude">Latitude</label>
@@ -28,7 +30,11 @@
         <input type="text" id="longitude" class="form-control" />
       </div>
 
-      <!-- TODO: appeler une méthode avec onClick -->
+      <h5 class="mt-5">Entrez le nom de la ville :</h5>
+      <div class="form-group">
+        <label for="city">Ville</label>
+        <input type="text" id="city" class="form-control" />
+      </div>
 
       <button class="btn btn-primary my-3 form-control" onclick="getWeather()">
         Afficher la météo

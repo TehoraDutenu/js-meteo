@@ -8,9 +8,37 @@ function getWeather() {
     // on va récupérer les valeurs des inputs
     const latitude = document.getElementById('latitude').value;
     const longitude = document.getElementById('longitude').value;
+    const city = document.getElementById('city').value;
+    console.log('city', city);
     console.log('latitude', latitude);
     console.log('longitude', longitude);
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&lang=fr`;
+    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&lang=fr`;
+    // const url = `https://api.openweathermap.org/data/2.5/weather?&appid=${apiKey}&units=metric&lang=frlon=${longitude}&appid=${apiKey}&units=metric&lang=fr`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?`;
+
+    // on teste si tous les champs sont remplis
+    if (city != "" && latitude != "" && longitude != "") {
+        url += `lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&lang=fr`;
+    } else if (city != "") {
+        url += `q=${city}&appid=${apiKey}&units=metric&lang=fr`;
+    } else if (latitude != "" || longitude != "") {
+        url += `lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&lang=fr`;
+    } else {
+        alert('Veuillez renseigner ville ou coordonnées');
+        return;
+    }
+
+    // if (city || (latitude && longitude)) {
+    //     if (latitude && longitude) {
+    //         url += `lat=${latitude}&lon=${longitude}`
+    //     } else {
+    //         url += `q=${city}`;
+    //     }
+    // } else {
+    //     alert('Veuillez renseigner ville ou coordonnées');
+    //     return;
+    // }
+    // url += `&appid=${apiKey}&units=metric&lang=fr`;
 
     // on va faire une requête ajax avec fetch
     fetch(url)
